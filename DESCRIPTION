@@ -2,8 +2,8 @@ Package: GEESCHelpersR
 Title: Helpers no R para Ajudar em Quaisquer Ocasiões
 Version: 0.0.1
 Authors@R: 
-    c(person("Pedro", "Benner", "pedrobenner@protonmail.com", role = c("aut", "cre")),
-    person("Grupo", "GEESC", "geesc.cedeplar@gmail.com", role = c("aut", "cre")))
+    c(person(given="Pedro", family="Benner", email="pedrobenner@protonmail.com", role = c("aut", "cre")),
+      person(given="Grupo", family="GEESC", email="geesc.cedeplar@gmail.com", role = "ctb"))
 Description: Inicialmente, funções para puxar do dropbox usando a api deles e método POST.
 License: Uso Interno
 Encoding: UTF-8
