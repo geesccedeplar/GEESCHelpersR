@@ -24,7 +24,7 @@ drop_path <- "/dropbox/path.csv"
 dbx <- get_dropbox_access_token("/path/to/.env")
 
 file <- dbx %>%
-  try_download(dropbox_path, local_path) %>%
+  try_download(drop_path, local_path) %>%
   # function to read the file
   read.csv()
 #' }
@@ -34,14 +34,16 @@ file <- dbx %>%
 ```{r try-sf, eval=FALSE}
 #' \dontrun{
 library(GEESCHelpersR)
-local_path <- "/local/path.csv"
-drop_path <- "/dropbox/path.csv"
+library(sf)
+
+local_path <- "/local/path.zip"
+drop_path <- "/dropbox/path.zip"
 dbx <- get_dropbox_access_token("/path/to/.env")
 
 file <- dbx %>%
-  try_sf_download(dropbox_path, local_path) %>%
+  try_sf_download(drop_path, local_path) %>%
   # function to read the file
-  read.csv()
+  read_sf()
 #' }
 ```
 
