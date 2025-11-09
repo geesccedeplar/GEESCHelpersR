@@ -9,7 +9,7 @@
 #' @param envpath The path to a local .env file
 #' @return A short-lived access token.
 #' @export
-get_dropbox_access_token <- function(envpath = ".env") {
+auth <- function(envpath = ".env") {
   # Load environment variables from .env file
   # This makes APP_KEY, APP_SECRET, etc. available via Sys.getenv()
   dotenv::load_dot_env(file = envpath)
