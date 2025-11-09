@@ -21,7 +21,7 @@ Esse pacote deve usado da seguinte forma:
 library(GEESCHelpersR)
 local_path <- "/local/path.csv"
 drop_path <- "/dropbox/path.csv"
-dbx <- get_dropbox_access_token("/path/to/.env")
+dbx <- auth("/path/to/.env")
 
 file <- dbx %>%
   try_download(drop_path, local_path) %>%
@@ -38,7 +38,7 @@ library(sf)
 
 local_path <- "/local/path.zip"
 drop_path <- "/dropbox/path.zip"
-dbx <- get_dropbox_access_token("/path/to/.env")
+dbx <- auth("/path/to/.env")
 
 file <- dbx %>%
   try_sf_download(drop_path, local_path) %>%
@@ -53,7 +53,7 @@ file <- dbx %>%
 library(GEESCHelpersR)
 local_path <- "/local/path.csv"
 drop_path <- "/dropbox/path.csv"
-dbx <- get_dropbox_access_token("/path/to/.env")
+dbx <- auth("/path/to/.env")
 
 dbx %>%
   download_dropbox_file(drop_path, local_path)
@@ -66,7 +66,7 @@ dbx %>%
 library(GEESCHelpersR)
 
 drop_path <- "/dropbox/path.csv"
-dbx <- get_dropbox_access_token("/path/to/.env")
+dbx <- auth("/path/to/.env")
 
 dbx %>%
   download_dropbox_memory(drop_path) %>%

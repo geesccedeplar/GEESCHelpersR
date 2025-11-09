@@ -61,3 +61,5 @@ dbx %>%
 #' }
 ```
 
+# Guia pra fazer pacotes no R
+[Making your first R package](https://tinyheero.github.io/jekyll/update/2015/07/26/making-your-first-R-package.html)
