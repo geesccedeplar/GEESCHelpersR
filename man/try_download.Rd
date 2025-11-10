@@ -19,3 +19,17 @@ The file read either locally or from dropbox. The file is also saved to disk.
 \description{
 Downloads a file from a specified Dropbox path to a local path.
 }
+\examples{
+\dontrun{
+library(GEESCHelpersR)
+
+local_path <- "/local/path.csv"
+drop_path <- "/dropbox/path.csv"
+dbx <- auth("/path/to/.env")
+
+file <- dbx |>
+  try_download(drop_path, local_path) |>
+  # function to read the file
+  read.csv()
+}
+}

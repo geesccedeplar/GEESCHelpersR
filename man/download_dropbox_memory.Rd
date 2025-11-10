@@ -17,3 +17,16 @@ A tempfile read from dropbox
 \description{
 Read file into memory without saving to disk
 }
+\examples{
+\dontrun{
+library(GEESCHelpersR)
+
+drop_path <- "/dropbox/path.csv"
+dbx <- auth("/path/to/.env")
+
+dbx |>
+  download_dropbox_memory(drop_path) |>
+  # function to read the file
+  read.csv()
+}
+}

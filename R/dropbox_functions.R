@@ -9,6 +9,10 @@
 #' @param envpath The path to a local .env file
 #' @return A short-lived access token.
 #' @export
+#' @examples
+#' \dontrun{
+#' dbx <- auth("/path/to/.env")
+#' }
 auth <- function(envpath = ".env") {
   # Load environment variables from .env file
   # This makes APP_KEY, APP_SECRET, etc. available via Sys.getenv()
@@ -22,7 +26,6 @@ auth <- function(envpath = ".env") {
   if (APP_KEY == "" || APP_SECRET == "") {
     stop("Error: APP_KEY and APP_SECRET must be set in your .env file.", call. = FALSE)
   }
-
   # --- Case 1: Refresh Token is PRESENT ---
   # This is the normal flow after the first-time setup.
   if (REFRESH_TOKEN != "") {
@@ -111,6 +114,17 @@ auth <- function(envpath = ".env") {
 #' @param local_path The local file path to save the file to (e.g., "./my_data.csv").
 #' @return NULL. The file is saved to disk.
 #' @export
+#' @examples
+#' \dontrun{
+#' library(GEESCHelpersR)
+#'
+#' local_path <- "/local/path.csv"
+#' drop_path <- "/dropbox/path.csv"
+#' dbx <- auth("/path/to/.env")
+#'
+#' dbx |>
+#'   download_dropbox_file(drop_path, local_path)
+#' }
 download_dropbox_file <- function(dbx_token, dropbox_path, local_path) {
   # The download API expects arguments in a JSON header
   api_arg <- list(path = dropbox_path)
@@ -150,6 +164,18 @@ download_dropbox_file <- function(dbx_token, dropbox_path, local_path) {
 #' @param dropbox_path The full path to the file in your Dropbox (e.g., "/Apps/MyApp/data.csv").
 #' @return A tempfile read from dropbox
 #' @export
+#' @examples
+#' \dontrun{
+#' library(GEESCHelpersR)
+#'
+#' drop_path <- "/dropbox/path.csv"
+#' dbx <- auth("/path/to/.env")
+#'
+#' dbx |>
+#'   download_dropbox_memory(drop_path) |>
+#'   # function to read the file
+#'   read.csv()
+#' }
 download_dropbox_memory <- function(dbx_token, dropbox_path) {
   # The download API expects arguments in a JSON header
   api_arg <- list(path = dropbox_path)
@@ -288,6 +314,19 @@ compute_local_hash <- function(local_path) {
 #' @param local_path The local file path to save the file to (e.g., "./my_data.csv").
 #' @return The file read either locally or from dropbox. The file is also saved to disk.
 #' @export
+#' @examples
+#' \dontrun{
+#' library(GEESCHelpersR)
+#'
+#' local_path <- "/local/path.csv"
+#' drop_path <- "/dropbox/path.csv"
+#' dbx <- auth("/path/to/.env")
+#'
+#' file <- dbx |>
+#'   try_download(drop_path, local_path) |>
+#'   # function to read the file
+#'   read.csv()
+#' }
 try_download <- function(dbx_token, dropbox_path, local_path) {
   tryCatch(
     {
@@ -343,6 +382,20 @@ try_download <- function(dbx_token, dropbox_path, local_path) {
 #' @param local_path The local file path to save the file to (e.g., "./my_data.csv").
 #' @return the zip tempdir to be read
 #' @export
+#' @examples
+#' \dontrun{
+#' library(GEESCHelpersR)
+#' library(sf)
+#'
+#' local_path <- "/local/path.zip"
+#' drop_path <- "/dropbox/path.zip"
+#' dbx <- auth("/path/to/.env")
+#'
+#' file <- dbx |>
+#'   try_sf_download(drop_path, local_path) |>
+#'   # function to read the file
+#'   read_sf()
+#' }
 try_sf_download <- function(dbx_token, dropbox_path, local_path) {
   tempdir <- tempfile()
   path <- try_download(dbx_token = dbx_token, dropbox_path = dropbox_path, local_path = local_path)

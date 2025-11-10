@@ -19,3 +19,18 @@ the zip tempdir to be read
 \description{
 Loads a zip file into memory using \link[GEESCHelpersR]{try_download}
 }
+\examples{
+\dontrun{
+library(GEESCHelpersR)
+library(sf)
+
+local_path <- "/local/path.zip"
+drop_path <- "/dropbox/path.zip"
+dbx <- auth("/path/to/.env")
+
+file <- dbx |>
+  try_sf_download(drop_path, local_path) |>
+  # function to read the file
+  read_sf()
+}
+}

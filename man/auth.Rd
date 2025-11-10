@@ -19,3 +19,8 @@ If found, it uses it to get a new access token.
 If not found, it initiates the manual "code" flow, gets a
 refresh token, and appends it to the .env file.
 }
+\examples{
+\dontrun{
+dbx <- auth("/path/to/.env")
+}
+}

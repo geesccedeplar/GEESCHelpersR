@@ -19,3 +19,15 @@ NULL. The file is saved to disk.
 \description{
 Downloads a file from a specified Dropbox path to a local path.
 }
+\examples{
+\dontrun{
+library(GEESCHelpersR)
+
+local_path <- "/local/path.csv"
+drop_path <- "/dropbox/path.csv"
+dbx <- auth("/path/to/.env")
+
+dbx |>
+  download_dropbox_file(drop_path, local_path)
+}
+}
